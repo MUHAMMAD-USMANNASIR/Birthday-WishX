@@ -25,17 +25,17 @@ def generate_wish(name):
 # Streamlit UI
 st.set_page_config(page_title="Birthday Wisher", layout="centered")
 
-# Custom Styling
+# Custom Dark Mode Styling
 st.markdown(
     """
     <style>
     body {
-        background-color: #f9f9f9;
-        color: #222222;
+        background-color: #121212; /* Dark background */
+        color: #f1f1f1; /* Light text */
         font-family: 'Helvetica Neue', sans-serif;
     }
     .stButton>button {
-        background: linear-gradient(to right, #6a11cb, #2575fc);
+        background: linear-gradient(to right, #ff416c, #ff4b2b); /* Pinkish gradient */
         color: white;
         border: none;
         padding: 0.6em 1.2em;
@@ -46,16 +46,17 @@ st.markdown(
     }
     .stButton>button:hover {
         transform: scale(1.05);
-        background: linear-gradient(to right, #2575fc, #6a11cb);
+        background: linear-gradient(to right, #ff4b2b, #ff416c);
     }
     .wish-box {
-        background: white;
+        background: #1e1e1e; /* Dark card */
         padding: 20px;
         border-radius: 12px;
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
         margin-top: 20px;
         font-size: 18px;
         line-height: 1.6;
+        color: #f5f5f5; /* Light text inside card */
     }
     </style>
     """,
