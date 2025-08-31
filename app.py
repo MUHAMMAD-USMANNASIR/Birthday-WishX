@@ -1,25 +1,31 @@
-# birthday_wisher.py
 import streamlit as st
-import requests
+import random
 
-# Hugging Face API setup
-import os
+# Predefined birthday wishes and quotes
+wishes = [
+    "Happy Birthday {name}, may your day be filled with joy and laughter.",
+    "Wishing you a year ahead full of success, happiness, and love, {name}.",
+    "{name}, may all your dreams come true this year. Have a wonderful birthday!",
+    "Happy Birthday {name}! May your life be blessed with endless smiles and unforgettable moments.",
+    "Cheers to you {name}, on your special day. May this year bring you closer to your goals."
+]
 
-API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct"
-headers = {"Authorization": f"Bearer {os.environ['HF_API_KEY']}"}
+quotes = [
+    "“Count your age by friends, not years. Count your life by smiles, not tears.” – John Lennon",
+    "“The more you praise and celebrate your life, the more there is in life to celebrate.” – Oprah Winfrey",
+    "“Today you are you, that is truer than true. There is no one alive who is youer than you.” – Dr. Seuss",
+    "“Every year on your birthday, you get a chance to start new.” – Sammy Hagar"
+]
 
 def generate_wish(name):
-    prompt = f"Write a heartfelt and elegant birthday wish for {name}. Make it positive, inspiring, and warm."
-    response = requests.post(API_URL, headers=headers, json={"inputs": prompt})
-    try:
-        return response.json()[0]['generated_text']
-    except:
-        return f"Happy Birthday {name}! Wishing you joy, success, and beautiful moments ahead."
+    wish = random.choice(wishes).format(name=name)
+    quote = random.choice(quotes)
+    return f"{wish}\n\n{quote}"
 
-# Streamlit Page Config
+# Streamlit UI
 st.set_page_config(page_title="Birthday Wisher", layout="centered")
 
-# Custom CSS for aesthetics
+# Custom Styling
 st.markdown(
     """
     <style>
@@ -58,7 +64,7 @@ st.markdown(
 
 # App Layout
 st.title("Birthday Wisher")
-st.write("Generate an elegant and personalized birthday wish.")
+st.write("Generate a personalized and elegant birthday wish.")
 
 name = st.text_input("Enter a name:")
 
